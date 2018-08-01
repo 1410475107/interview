@@ -1,0 +1,29 @@
+<% include header.html %>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">首页</a>
+        </li>
+        <li>
+            <a href="#">分类</a>
+        </li>
+        <li class="active">分类管理</li>
+    </ol>
+    <table class="table table-bordered">
+        <tr>
+            <td>ID</td>
+            <td>名称</td>
+            <td>操作</td>
+        </tr>
+        <% 
+        let n = 0;
+        for(let qc of qclist){
+            n++;
+            %>
+        <tr>
+            <td><%=n%></td>
+            <td><%=qc.qcname%></td>
+            <td>删除|修改</td>
+        </tr>
+        <%}%>
+    </table>
+    <% include footer.html %>
