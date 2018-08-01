@@ -7,7 +7,6 @@ module.exports = function () {
         mydb.query(sql, (err, result)=>{
             res.render('admin/qclist', {qclist:result});
         });
-        
     });
 
     //添加的页面路由
