@@ -14,7 +14,7 @@ module.exports = function () {
     router.get('/add', (req ,res)=>{
         res.render('admin/addqclass');
     });
-    //添加数据处理
+    //添加数据处理，把数据保存到数据库
     router.post('/addclasssubmit',(req ,res)=>{
         let sql = 'INSERT INTO qclass(qcname, aid, username, addtimes) VALUES(?,?,?,?)';
         mydb.query(sql, [req.body.qcname, req.session.aid, req.session.username, new Date().toLocaleString()],(err, result)=>{
