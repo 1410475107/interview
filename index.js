@@ -44,7 +44,8 @@ server.use('/admin/qclass', require('./module/admin/qclass')());
 
 //静态资源托管
 server.use(express.static('view'));
-//404处理
+
+//404处理：样式自定义
 server.use((req ,res)=>{
     res.send('你访问的路径不存在');
 });
