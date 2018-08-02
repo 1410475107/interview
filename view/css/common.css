@@ -76,3 +76,10 @@ ul li{
     width: 100%;
     z-index: 999;
 }
+
+.star{
+    display: inline-block;
+    height: 16px;
+    width: 80px;
+    background-image: url(/image/sm.png);
+}

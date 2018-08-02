@@ -88,7 +88,7 @@ server.post('/upload', upload.array('editimages'), (req, res) => {
     // req.files;
     let data = [];
     for (const img of req.files) {
-        //追加上访问的域名
+        //追加上访问的域名，组成绝对路径
         data.push(hostname + img.path);
     }
     // data 是一个数组，返回若干图片的线上地址，这种返回的数据格式是编辑器要求的返回格式

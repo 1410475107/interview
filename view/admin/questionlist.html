@@ -11,20 +11,28 @@
     <table class="table table-bordered">
         <tr>
             <th>ID</th>
-            <th>名称</th>
+            <th>题干</th>
+            <th>分类</th>
+            <th>难易</th>
+            <th>重要</th>
+            <th>添加时间</th>
             <th>操作</th>
         </tr>
         <% 
         let n = 0;
-        for(let qc of questionlist){
+        for(let q of questionlist){
             n++;
             %>
         <tr>
             <td><%=n%></td>
-            <td><%=qc.qcname%></td>
+            <td><%=q.qtitle.replace(/<[^>]+>/g, '').substring(0, 100)%></td>
+            <td><%=q.qcname%></td>
+            <td><span class="star" style="width:<%=q.diff*16%>px"></span></td>
+            <td><span class="star" style="width:<%=q.import*16%>px"></span></td>
+            <td><%=q.addtimes.toLocaleString()%></td>
             <td>
-                <a href="javascript:void(0)" class="delc" qcid="<%=qc.qcid%>">删除</a>|
-                <a href="/admin/qclass/update?qcid=<%=qc.qcid%>">修改</a>    
+                <a href="javascript:void(0)" class="delq" qid="<%=q.qid%>">删除</a>|
+                <a href="/admin/question/update?qid=<%=q.qid%>">修改</a>    
             </td>
         </tr>
         <%}%>
