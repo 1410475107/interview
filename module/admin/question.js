@@ -84,8 +84,8 @@ module.exports = function () {
             let end = page + Math.floor((showpage-1)/2);
             //开始页数不能小于  1
             if(start < 1){
-                start = 1;
-                end  = showpage - 1 + start;
+                start   = 1;
+                end     = showpage - 1 + start;
             }
             //结束页码不能大于总页数
             if(end > totalpage){
