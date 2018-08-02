@@ -5,8 +5,8 @@ module.exports = function () {
     //判断是否登录
     router.use((req, res, next)=>{
         if(!req.session.aid){
-            // res.redirect('/admin/login');
-            // return ;
+            res.redirect('/admin/login');
+            return ;
         }
         next();
     });
