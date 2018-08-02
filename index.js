@@ -39,8 +39,13 @@ server.use(bodyParser.urlencoded({
 
 //实现管理员登录：引用的模块文件后面要有小括号   路径第一个字符 是  /  
 server.use('/admin/login', require('./module/admin/login')());
+
+
 //分类管理路由模块
 server.use('/admin/qclass', require('./module/admin/qclass')());
+
+//试题管理路由模块
+// server.use('/admin/question', require('./module/admin/question')());
 
 //静态资源托管
 server.use(express.static('view'));

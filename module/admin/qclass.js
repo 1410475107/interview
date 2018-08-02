@@ -1,5 +1,14 @@
 module.exports = function () {
     let router = express.Router();
+    //判断是否登录
+    router.use((req, res, next)=>{
+        if(!req.session.aid){
+            res.redirect('/admin/login');
+            return ;
+        }
+        next();
+    });
+
     //路由处理
     router.get('/', (req ,res)=>{
         //查询所有的分类并显示到页面
