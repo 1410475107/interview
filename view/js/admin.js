@@ -2,6 +2,9 @@ window.onload = function () {
     addClass();
     updateClass();
     delClass();
+
+    //添加试题
+    addQuestion();
 }
 
 function addClass() {
@@ -70,6 +73,28 @@ function updateClass() {
             success: function (data) {
                 if (data.r == 'ok') {
                     window.location.href = '/admin/qclass/';
+                }
+            }
+        });
+    });
+
+}
+
+
+//添加试题
+function addQuestion() {
+    $('.savequestion').click(function () {
+        //各种检查
+
+        //直接把数据提交到服务器
+        $.ajax({
+            url: './addquestionsubmit',
+            type: 'POST',
+            data: $('#addquestion').serialize(),
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.r == 'ok') {
+                    window.location.href = '/admin/question/';
                 }
             }
         });

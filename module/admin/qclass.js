@@ -38,7 +38,6 @@ module.exports = function () {
             if(err){
                 console.log(err);
                 res.json({r:'db_err'});
-
                 return ;
             }
             res.json({r:'ok'});

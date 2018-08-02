@@ -1,0 +1,109 @@
+<% include header.html %>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">首页</a>
+        </li>
+        <li>
+            <a href="#">试题</a>
+        </li>
+        <li class="active">试题添加</li>
+    </ol>
+
+    <form action="" id="addquestion" class="form-inline">
+        <div class="form-group">
+            <label for="qcid">分类：</label>
+            <select name="qcid" id="qcid" class="form-control">
+                <option value="">请选择分类</option>
+                <% for(let qc of qclist){%>
+                    <option value="<%=qc.qcid%>">
+                        <%=qc.qcname%>
+                    </option>
+                    <%}%>
+
+            </select>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="qtitle">题干：</label>
+            <div id="editor">
+            </div>
+            <textarea name="qtitle" id="qtitle" cols="30" rows="10" class="hide"></textarea>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="answer">答案：</label>
+            <br>
+            <textarea class="form-control" cols="93" rows="3" name="answer" id="answer"></textarea>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="ansyle">试题分析：</label>
+            <div id="editor_ansyle">
+            </div>
+            <textarea name="ansyle" id="ansyle" cols="30" rows="10" class="hide"></textarea>
+        </div>
+        <p></p>
+        <div class="form-group">
+                <label for="diff">难易度：</label>
+                <select name="diff" id="diff" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                    <label for="import">重要度：</label>
+                    <select name="import" id="import" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <p></p>
+                <div class="form-group">
+                        <label for="comefrom">来源：</label>
+                        <input type="text" class="form-control" name="comefrom" id="comefrom" >
+                    </div>
+                    <p></p>
+
+        <button type="button" class="btn btn-default savequestion">保存</button>
+
+        <br><br><br>
+    </form>
+    <% include footer.html %>
+        <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+        <script>
+            //题干的编辑器
+            var E = window.wangEditor;
+            var editor = new E('#editor');
+            // 监控变化，同步更新到 textarea
+            var $qtitle = $('#qtitle');
+            editor.customConfig.onchange = function (html) {
+                $qtitle.val(html);
+            }
+            //开启图片上传并设置处理图片的服务器接口地址
+            editor.customConfig.uploadImgServer = '/upload';
+            //设置上传的图片名称
+            editor.customConfig.uploadFileName = 'editimages';
+            editor.create();
+
+            //试题分析的编辑器
+            var editor_ansyle = new E('#editor_ansyle');
+            // 监控变化，同步更新到 textarea
+            var $ansyle = $('#ansyle');
+            editor_ansyle.customConfig.onchange = function (html) {
+                $ansyle.val(html);
+            }
+            //开启图片上传并设置处理图片的服务器接口地址
+            editor_ansyle.customConfig.uploadImgServer = '/upload';
+            //设置上传的图片名称
+            editor_ansyle.customConfig.uploadFileName = 'editimages';
+            editor_ansyle.create();
+        </script>
