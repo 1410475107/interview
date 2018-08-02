@@ -8,6 +8,23 @@
         </li>
         <li class="active">试题管理</li>
     </ol>
+    <form class="form-inline" action="">
+        <div class="form-group">
+            <label for="qcid">分类</label>
+            <select name="qcid" id="qcid" class="form-control">
+                <option value="0">==全部==</option>
+                <% for(let qc of qclist){%>
+                    <option value="<%=qc.qcid%>"<%=qc.qcid == qcid ? ' selected':''%>><%=qc.qcname%></option>
+                <%}%>
+            </select>
+        </div>
+        <div class="form-group">
+                <label for="qcid">题干</label>
+               <input type="text" class="form-control" name="keywords" id="keywords" value="<%=keywords%>">
+            </div>
+        <button type="submit" class="btn btn-default">查询</button>
+    </form>
+    <hr>
     <table class="table table-bordered">
         <tr>
             <th>ID</th>
@@ -23,18 +40,47 @@
         for(let q of questionlist){
             n++;
             %>
-        <tr>
-            <td><%=n%></td>
-            <td><%=q.qtitle.replace(/<[^>]+>/g, '').substring(0, 100)%></td>
-            <td><%=q.qcname%></td>
-            <td><span class="star" style="width:<%=q.diff*16%>px"></span></td>
-            <td><span class="star" style="width:<%=q.import*16%>px"></span></td>
-            <td><%=q.addtimes.toLocaleString()%></td>
-            <td>
-                <a href="javascript:void(0)" class="delq" qid="<%=q.qid%>">删除</a>|
-                <a href="/admin/question/update?qid=<%=q.qid%>">修改</a>    
-            </td>
-        </tr>
-        <%}%>
+            <tr>
+                <td>
+                    <%=n%>
+                </td>
+                <td>
+                    <%-q.qtitle.replace(/<[^>]+>/g, '').substring(0, 100).replace(keywords, `<span class="H">${keywords}</span>`);%>
+                </td>
+                <td>
+                    <%=q.qcname%>
+                </td>
+                <td>
+                    <span class="star" style="width:<%=q.diff*16%>px"></span>
+                </td>
+                <td>
+                    <span class="star" style="width:<%=q.import*16%>px"></span>
+                </td>
+                <td>
+                    <%=q.addtimes.toLocaleString()%>
+                </td>
+                <td>
+                    <a href="javascript:void(0)" class="delq" qid="<%=q.qid%>">删除</a>|
+                    <a href="/admin/question/update?qid=<%=q.qid%>">修改</a>
+                </td>
+            </tr>
+            <%}%>
     </table>
+    <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li>
+                <a href="/admin/question?page=<%=page-1 < 1 ? 1:(page-1)%><%=urlext%>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <%for(let p = start; p <= end; p++){%>
+              <li<%-p==page ? ' class="active"':''%>><a href="/admin/question?page=<%=p%><%=urlext%>"><%=p%></a></li>
+              <%}%>
+              <li>
+                <a href="/admin/question?page=<%=page*1+1 >totalpage ? totalpage:(page*1+1)%><%=urlext%>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
     <% include footer.html %>

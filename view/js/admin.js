@@ -5,6 +5,8 @@ window.onload = function () {
 
     //添加试题
     addQuestion();
+    //试题分类查询
+    classQuestion();
 }
 
 function addClass() {
@@ -100,4 +102,11 @@ function addQuestion() {
         });
     });
 
+}
+
+//根据分类筛选试题
+function classQuestion() {
+    $('#qcid').change(function () {
+        window.location.href = '/admin/question?qcid=' + $(this).val();
+    });
 }
