@@ -1,0 +1,20 @@
+<% include header.html %>
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">首页</a>
+        </li>
+        <li>
+            <a href="#">分类</a>
+        </li>
+        <li class="active">分类修改</li>
+    </ol>
+
+    <form action="" id="updateitem" class="form-inline">
+        <input type="hidden" name="qcid" id="qcid" value="<%=qclass.qcid%>">
+        <div class="form-group">
+            <label for="qcname">名称</label>
+            <input type="text" class="form-control" name="qcname" id="qcname" value="<%=qclass.qcname%>" placeholder="请输入分类名称">
+        </div>
+        <button type="button" class="btn btn-default updateclass">保存</button>
+    </form>
+<% include footer.html %>

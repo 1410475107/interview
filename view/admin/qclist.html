@@ -10,9 +10,9 @@
     </ol>
     <table class="table table-bordered">
         <tr>
-            <td>ID</td>
-            <td>名称</td>
-            <td>操作</td>
+            <th>ID</th>
+            <th>名称</th>
+            <th>操作</th>
         </tr>
         <% 
         let n = 0;
@@ -22,7 +22,10 @@
         <tr>
             <td><%=n%></td>
             <td><%=qc.qcname%></td>
-            <td>删除|修改</td>
+            <td>
+                <a href="javascript:void(0)" class="delc" qcid="<%=qc.qcid%>">删除</a>|
+                <a href="/admin/qclass/update?qcid=<%=qc.qcid%>">修改</a>    
+            </td>
         </tr>
         <%}%>
     </table>
