@@ -21,7 +21,7 @@ module.exports = function () {
         mydb.query(sql, [header, req.session.uid], (err, result)=>{
             res.json({r:'ok'});
         });
-    })
+    });
 
     return router;
 }

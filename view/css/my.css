@@ -1,0 +1,147 @@
+/*清除浏览器默认样式*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: '微软雅黑', 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    width: 930px;
+    height: 75px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.topline {
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #9C9C9C;
+    box-shadow: 0 3px 5px #9c9c9c;
+    margin-bottom: 20px;
+}
+
+.header li {
+    display: inline-block;
+    width: 115px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.header li a {
+    font-size: 18px;
+    color: #9C9C9C;
+    text-decoration: none;
+    padding: 6px;
+}
+
+.header li a:hover {
+    border-bottom: 2px solid #29BDB9;
+}
+
+.header li.logo {
+    position: absolute;
+    top: 16px;
+    width: 173px;
+    height: 64px;
+    background-image: url(/image/logo-2.png);
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.header .sec {
+    margin-left: 180px;
+}
+
+.header .reg {
+    width: 86px;
+    height: 36px;
+    background: #28BEB8;
+    border: 1px solid #28BEB8;
+}
+
+.header .reg a,
+.header .login a {
+    font-size: 14px;
+    color: #fff;
+}
+
+.header .login a {
+    color: #28BEB8;
+}
+
+.header .reg a:hover {
+    border-bottom: 0;
+    color: #fff;
+}
+
+.header .reg:hover {
+    background: #219A96;
+}
+
+.header .login {
+    width: 86px;
+    height: 36px;
+    border: 1px solid #28BEB8;
+    font-size: 14px;
+}
+
+.header .login a:hover {
+    border-bottom: 0;
+    color: #fff;
+}
+
+.header .login:hover {
+    background-color: #9C9C9C;
+    border-color: #9C9C9C;
+}
+
+.header .login:hover a {
+    color: #fff;
+}
+
+.codeimg {
+    cursor: pointer;
+}
+
+.main {
+    border-left: 2px solid rgb(221, 51, 62);
+    height: 100%;
+}
+
+#myheader {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.topheader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.star {
+    display: inline-block;
+    height: 16px;
+    width: 80px;
+    background-image: url(/image/sm.png);
+}
+
+.panel .order {
+    font-weight: bolder;
+    color: rgb(131, 13, 37);
+    font-size: 24px;
+}

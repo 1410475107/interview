@@ -106,6 +106,8 @@ server.use('/', require('./module/index')());
 //个人中心
 server.use('/user', require('./module/user')());
 
+//试题库
+server.use('/question', require('./module/question')());
 
 //静态资源托管
 server.use('/uploads', express.static('uploads'));

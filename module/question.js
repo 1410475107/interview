@@ -1,17 +1,16 @@
 const async = require('async');
 module.exports = function () {
-    let router = express.Router();
+    const router = express.Router();
     let qtable = 'questions';
-    //判断是否登录
-    router.use((req, res, next)=>{
-        if(!req.session.aid){
-            res.redirect('/admin/login');
+    //进到个人中心的前提是登录
+    router.use((req ,res, next)=>{
+        if(!req.session.uid){
+            res.redirect('/login');
             return ;
         }
         next();
     });
-
-    //路由处理
+    //试题列表页面
     router.get('/', (req ,res)=>{
         let qcid = req.query.qcid ? req.query.qcid : 0;
         qcid = parseInt(qcid);
@@ -20,7 +19,7 @@ module.exports = function () {
         //当前页面
         let page = req.query.page ? req.query.page : 1;
         //每页显示多少条
-        let pagenum = 1;
+        let pagenum = 10;
         //总页数
         let totalpage= 1;
         //链接地址扩展信息
@@ -54,7 +53,7 @@ module.exports = function () {
             },
             questionlist:function (cb) {
                 //查询所有的试题并显示到页面
-                let sql = `SELECT q.qid, q.qtitle, q.diff, q.import, q.addtimes, c.qcname 
+                let sql = `SELECT q.qid, q.qtitle, q.diff, q.import, q.collect, q.views, q.addtimes, c.qcname 
                 FROM ${qtable} AS q 
                 LEFT JOIN qclass AS c ON q.qcid = c.qcid 
                 WHERE q.status = 0`;
@@ -102,76 +101,57 @@ module.exports = function () {
             results.end = end;
             //链接地址里面查询信息
             results.urlext = urlext;
-            res.render('admin/questionlist', results);
+            res.render('qlist', results);
         });
     });
 
-    //试题添加页面
-    router.get('/add', (req ,res)=>{
-        //获取分类信息
-        let sql = 'SELECT qcid, qcname FROM qclass WHERE status = 0';
-        mydb.query(sql, (err, results)=>{
-            res.render('admin/addquestion', {qclist:results});
-        });
-    });
-
-    router.post('/addquestionsubmit',(req ,res)=>{
-        let sql = `INSERT INTO ${qtable}(qcid, qtitle, answer, ansyle, diff, import, comefrom, aid, username, addtimes) VALUES(?,?,?,?,?,?,?,?,?,?)`;
-        let p = req.body;
-        mydb.query(sql, [p.qcid, p.qtitle, p.answer, p.ansyle, p.diff, p.import, p.comefrom, req.session.aid, req.session.username, new Date().toLocaleString()],(err, result)=>{
-            if(err){
-                console.log(err);
-                res.json({r:'db_err'});
-                return ;
-            }
-            res.json({r:'ok'});
-        });
-    });
-    
-    router.post('/updatequestionsubmit',(req ,res)=>{
-        let sql = `UPDATE ${qtable} SET qcid = ?, qtitle = ?, answer = ?, ansyle = ?, diff = ?, import = ?, comefrom = ?, aid = ?, username = ?, updatetimes = ? WHERE qid = ? LIMIT 1`;
-        let p = req.body;
-        mydb.query(sql, [p.qcid, p.qtitle, p.answer, p.ansyle, p.diff, p.import, p.comefrom, req.session.aid, req.session.username, new Date().toLocaleString(), p.qid],(err, result)=>{
-            if(err){
-                console.log(err);
-                res.json({r:'db_err'});
-                return ;
-            }
-            res.json({r:'ok'});
-        });
-    });
-
-    //显示修改页面，设置好历史信息
-    router.get('/update', (req, res)=>{
-        let qid = parseInt(req.query.qid);
-        if(!qid){
-            res.send('你确定你要修改信息');
-            return ;
-        }
-        async.series({
-            //查询所有的试题分类
-            qclist:function (cb) {
-                let sql = 'SELECT qcid, qcname FROM qclass WHERE status = 0';
-                mydb.query(sql, (err, results)=>{
-                    cb(null, results);
+    router.post('/collect', (req, res)=>{
+        let qid = req.body.qid;
+        async.waterfall([
+            function(cb){//检查是否已经收藏过
+                let sql = 'SELECT cid FROM collection WHERE qid = ? AND uid = ? LIMIT 1';
+                mydb.query(sql, [qid, req.session.uid], (err ,result)=>{
+                    if(result.length){
+                        cb(null, 'have');
+                    }else{
+                        cb(null, 'ok');
+                    }
                 });
             },
-            //查询当前信息的原始信息
-            question:function(callback){
-                let sql = `SELECT * FROM ${qtable} WHERE qid = ? LIMIT 1`;
-                mydb.query(sql, qid, (err, result)=>{
-                    console.log(err);
-                    callback(null, result[0]);
-                });
+            function (ch, cb) {
+                console.log(ch);
+                if(ch == 'ok'){
+                    let sql = `UPDATE ${qtable} SET collect = collect + 1 WHERE qid = ?`;
+                    mydb.query(sql, qid, (err ,result)=>{
+                        cb(null, ch);
+                    });
+                }else{
+                    cb(null, ch);
+                }
+            },
+            function (ch, cb) {
+                if(ch == 'ok'){
+                    let sql = `INSERT INTO collection(uid, qid, addtimes) VALUES(?,?,?)`;
+                    mydb.query(sql, [req.session.uid, qid, new Date().toLocaleString()], (err ,result)=>{
+                        cb(null, ch);
+                    });
+                }else{
+                    cb(null, ch);
+                }
             }
-        }, (err, results)=>{
-            /*{
-                qclist:[{qcid:1, qcname:'CSSS'}, {qcid:2, qcname:'JAVASCRipt'}],
-                question:{qid:1, qtitle:'什么定位'.....}
-            }*/
-            res.render('admin/updatequestion', results);
+        ], (err, result)=>{
+            res.json({r:result});
         });
+
     });
+
+    // router.get('/', (req ,res)=>{
+    //     res.render('qlist', {
+    //         username:req.session.username,
+    //         header:req.session.header
+    //     });
+    // });
+
 
     return router;
 }

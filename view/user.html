@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>个人中心-面试题平台</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/user.css">
-</head>
-<body>
+<% include top.html%>
     <div class="container">
         <h1><img src="<%=header%>" class="topheader" alt="">欢迎<%=username%>来到面试题平台 </h1>
         <div class="row">
                 <div class="col-sm-2 col-xs-2 leftmenu">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active"> <a href="/user/">个人头像</a></li>
+                        <li><a href="##">个人收藏</a></li>
+                        <li><a href="##">做过的题</a></li>
                         <li><a href="##">修改密码</a></li>
-                        <li><a href="##">修改密码</a></li>
-                        <li><a href="##">修改密码</a></li>
-                        <li><a href="##">修改密码</a></li>
+                        <li><a href="##">退出登录</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-10 col-xs-10 main">
@@ -35,9 +25,4 @@
                 </div>
         </div>
     </div>
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/user.js"></script>
-</body>
-
-</html>
+    <% include bottom.html%>

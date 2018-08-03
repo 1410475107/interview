@@ -4,7 +4,8 @@ window.onload = function () {
     login();
     //上传头像用的
     uploadheader();
-
+    //收藏事件
+    collect();
 }
 function reg() {
     $('.regbtn').click(function(){
@@ -95,6 +96,29 @@ function uploadheader() {
             }
         });
     });
+}
 
-    
+
+//收藏处理
+function collect() {
+    $('.collect').click(function(){
+        let $qid = $(this).attr('qid');
+        let This = this;
+        $.ajax({
+            url:'/question/collect',
+            type:'POST',
+            data:{qid:$qid},
+            dataType:'JSON',
+            success:function (result) {
+                console.log(result);
+                if(result.r == 'ok'){
+                    let badge = $(This).find('.badge');
+                    badge.html(parseInt(badge.html()) + 1);
+                }
+                // <a href="###" class="collect" qid="<%=q.qid%>">收藏
+                //     <span class="badge"><%=q.collect%></span>
+                // </a>
+            }
+        });
+    });
 }
