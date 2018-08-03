@@ -14,6 +14,10 @@ module.exports = function () {
     router.post('/reg', (req ,res)=>{
         //检查账号是否已经存在
         let p = req.body;
+        if(!p.passwd){
+            res.json({r:'passwd_no'});
+            return ;
+        }
         let sql = `SELECT uid FROM user WHERE username = ? LIMIT 1`;
         mydb.query(sql, p.username, (err, result)=>{
             if(result.length){
