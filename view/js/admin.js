@@ -7,6 +7,8 @@ window.onload = function () {
     addQuestion();
     //试题分类查询
     classQuestion();
+    //修改试题
+    updateQuestion();
 }
 
 function addClass() {
@@ -106,7 +108,29 @@ function addQuestion() {
 
 //根据分类筛选试题
 function classQuestion() {
-    $('#qcid').change(function () {
+    $('.csearch').change(function () {
         window.location.href = '/admin/question?qcid=' + $(this).val();
     });
+}
+
+
+//修改试题
+function updateQuestion() {
+    $('.updatequestion').click(function () {
+        //各种检查
+
+        //直接把数据提交到服务器
+        $.ajax({
+            url: './updatequestionsubmit',
+            type: 'POST',
+            data: $('#updatequestion').serialize(),
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.r == 'ok') {
+                    window.location.href = '/admin/question/';
+                }
+            }
+        });
+    });
+
 }

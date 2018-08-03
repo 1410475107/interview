@@ -11,7 +11,7 @@
     <form class="form-inline" action="">
         <div class="form-group">
             <label for="qcid">分类</label>
-            <select name="qcid" id="qcid" class="form-control">
+            <select name="qcid" id="qcid" class="form-control csearch">
                 <option value="0">==全部==</option>
                 <% for(let qc of qclist){%>
                     <option value="<%=qc.qcid%>"<%=qc.qcid == qcid ? ' selected':''%>><%=qc.qcname%></option>
