@@ -1,0 +1,21 @@
+.codeimg{
+    cursor: pointer;
+}
+
+.main{
+    border-left: 2px solid rgb(221, 51, 62);
+    height: 100%;
+}
+
+
+#myheader{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.topheader{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

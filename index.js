@@ -4,6 +4,7 @@ global.express = require('express');
 const mysql = require('mysql');
 global.ejs = require('ejs');
 global.md5 = require('md5');
+global.svgCaptcha = require('svg-captcha');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -101,6 +102,10 @@ server.post('/upload', upload.array('editimages'), (req, res) => {
 
 //首页
 server.use('/', require('./module/index')());
+
+//个人中心
+server.use('/user', require('./module/user')());
+
 
 //静态资源托管
 server.use('/uploads', express.static('uploads'));

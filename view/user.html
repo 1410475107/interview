@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心-面试题平台</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/user.css">
+</head>
+<body>
+    <div class="container">
+        <h1><img src="<%=header%>" class="topheader" alt="">欢迎<%=username%>来到面试题平台 </h1>
+        <div class="row">
+                <div class="col-sm-2 col-xs-2 leftmenu">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"> <a href="/user/">个人头像</a></li>
+                        <li><a href="##">修改密码</a></li>
+                        <li><a href="##">修改密码</a></li>
+                        <li><a href="##">修改密码</a></li>
+                        <li><a href="##">修改密码</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-10 col-xs-10 main">
+                    <h3>修改个人头像</h3>
+                    <form class="form-horizontal" id="headerform">
+                        <button type="button" class="btn btn-default uploadheader">上传头像</button>
+                        <input type="file" class="hide" name="header" id="header" accept="image/jpeg, image/png, image/gif, image/bmp, image/svg" >
+                        <hr>
+                        <img src="<%=header%>" alt="" id="myheader">
+                        <input type="hidden" name="myheader" value="<%=header%>">
+                        <hr>
+                        <button type="button" class="btn btn-default saveheader">保存</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/user.js"></script>
+</body>
+
+</html>
