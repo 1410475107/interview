@@ -97,6 +97,11 @@ server.post('/upload', upload.array('editimages'), (req, res) => {
         "data": data
     });
 });
+
+
+//首页
+server.use('/', require('./module/index')());
+
 //静态资源托管
 server.use('/uploads', express.static('uploads'));
 server.use(express.static('view'));

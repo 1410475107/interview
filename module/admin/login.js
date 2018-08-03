@@ -36,6 +36,14 @@ module.exports = function () {
                 res.json({r:'ok'});
             });
         });
+    });
+
+    //处理退出登录操作
+    router.get('/logout', (req ,res)=>{
+        //清除session信息
+        delete req.session.aid;
+        //跳转到登录页面
+        res.redirect('/admin/login');
     })
 
     return router;
