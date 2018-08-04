@@ -15,16 +15,32 @@
             <li class="logo"></li>
             <li class="sec"><a href="/">首页</a></li>
             <li><a href="/question">题库</a></li>
-            <li><a href="/user">个人中心</a></li>
+            <% if(typeof username =='undefined'){%>
+            <li>
+                <a href="/user/">个人中心</a>
+            </li>
+            <%}%>
             <li><a href="##">关于我们</a></li>
-            <li class="reg"> <a href="/reg">注册</a> </li>
-            <li class="login"><a href="/login">登录</a></li>
+
+            <% if(typeof username !='undefined'){%>
+            <li class="user">
+                你好，<a href="/user/"><%=username%></a> 
+            </li>
+            <%}else{%>
+            <li class="reg">
+                <a href="/reg">注册</a>
+            </li>
+            <li class="login">
+                <a href="/login">登录</a>
+            </li>
+            <%}%>
+            
         </ul>
         <!-- 顶部导航  end -->
 
-        <div class="ad"><span>三分钟</span>搞定一场考试</div>
-        <div class="ad ad1"><span>5,000,000+</span>用户通过赛码完成了选拔、测评、测验各类别在线考试</div>
-        <a href="###"><div class="free">免费试用</div></a> 
+        <div class="ad"><span>一分钟免费</span>快速注册账号</div>
+        <div class="ad ad1"><span>1000+</span>学员通过该平台完成笔试题测试并找到<span>6000+</span>工作</div>
+        <a href="/question/"><div class="free">免费试用</div></a> 
     </div>
 
 </body>

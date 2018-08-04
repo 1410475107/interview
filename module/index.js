@@ -2,12 +2,17 @@ module.exports = function () {
     let router = express.Router();
 
     router.get('/', (req ,res)=>{
-        res.render('index');
+        //个人信息
+        res.render('index',{
+            //个人信息
+            username:req.session.username,
+            header:req.session.header
+        });
     });
 
     //注册页面
     router.get('/reg', (req ,res)=>{
-        res.render('reg');
+        res.render('reg', {title:'注册页面'});
     });
 
     //处理注册的数据
@@ -38,7 +43,14 @@ module.exports = function () {
 
     //登录页面
     router.get('/login', (req ,res)=>{
-        res.render('login');
+        res.render('login', {title:'登录', href:req.query.href});
+    });
+    //退出登录
+    router.get('/logout', (req ,res)=>{
+        delete req.session.uid;
+        delete req.session.username;
+        delete req.session.header;
+        res.redirect('/login');
     });
     //登录验证
     router.post('/login', (req ,res)=>{
@@ -69,7 +81,7 @@ module.exports = function () {
             //更新个人登录信息
             let upsql = 'UPDATE user SET loginnum = loginnum + 1, ip=?, lasttimes=? WHERE uid = ?';
             mydb.query(upsql, [req.ip, new Date().toLocaleString(), result[0].uid], (err, result)=>{
-                res.json({r:'ok'});
+                res.json({r:'ok', url:req.body.href});
             });
         });
     });
@@ -84,7 +96,7 @@ module.exports = function () {
             color:true,
             background: '#cc9966',
             width:100,
-            height:40
+            height:34
         });
         req.session.captcha = captcha.text;
         

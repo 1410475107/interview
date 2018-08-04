@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>前端工程师-面试题题库-首页</title>
+    <title><%=title ? title : ''%>-前端工程师面试题题库</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/my.css">
 </head>
-
 <body>
     <!-- 顶部导航  start -->
     <ul class="header">
@@ -20,18 +19,27 @@
         <li>
             <a href="/question">题库</a>
         </li>
+        <% if(typeof username =='undefined'){%>
         <li>
-            <a href="/user">个人中心</a>
+            <a href="/user/">个人中心</a>
         </li>
+        <%}%>
         <li>
             <a href="##">关于我们</a>
         </li>
+        <% if(typeof username !='undefined'){%>
+            <li class="user">
+                你好，<a href="/user/"><%=username%></a> 
+                <img src="<%=header%>" alt="">
+            </li>
+            <%}else{%>
         <li class="reg">
             <a href="/reg">注册</a>
         </li>
         <li class="login">
             <a href="/login">登录</a>
         </li>
+        <%}%>
     </ul>
     <div class="topline"></div>
      <!-- 顶部导航  end -->

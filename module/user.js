@@ -2,23 +2,17 @@ const async = require('async');
 module.exports = function () {
     const router = express.Router();
     let qtable = 'questions';
-
-    
     //进到个人中心的前提是登录
     router.use((req ,res, next)=>{
-        /*
-        req.session.uid = 2;
-        req.session.header = 'http://lulaoshi:81/uploads\2018\08\1533289491644_044937.jpg';
-        req.session.username = '屈向';
-        */
         if(!req.session.uid){
-            res.redirect('/login');
+            res.redirect('/login?href=' + req.originalUrl);
             return ;
         }
         next();
     });
     router.get('/', (req ,res)=>{
         res.render('user', {
+            title:'个人中心',
             username:req.session.username,
             header:req.session.header
         });
@@ -100,6 +94,7 @@ module.exports = function () {
             results.urlext = urlext;
             results.header = req.session.header;
             results.username = req.session.username;
+            results.title = '收藏的试题-个人中心';
             res.render('collectlist', results);
         });
     });

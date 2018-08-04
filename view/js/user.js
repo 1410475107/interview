@@ -8,6 +8,8 @@ window.onload = function () {
     collect();
     //答题
     answer();
+    //左侧导航：选中当前访问的菜单
+    leftmenu();
 }
 function reg() {
     $('.regbtn').click(function(){
@@ -53,7 +55,12 @@ function login() {
             dataType:'JSON',
             success:function (result) {
                 if(result.r == 'ok'){
-                    window.location.href = '/user/';
+                    let url = '/user/';
+                    if(result.url){
+                        url = result.url;
+                    }
+                    console.log(url);
+                    window.location.href = url;
                 }
             }
         });
@@ -144,4 +151,17 @@ function answer() {
             }
         });
     });
+}
+
+
+function leftmenu() {
+    let alla = $('.leftmenu li a');
+    let url = window.location.pathname;
+    console.log(alla);
+    for (let index = 0; index < alla.length; index++) {
+        console.log(alla[index].getAttribute('href'));
+        if($(alla[index]).attr('href') == url){
+            $(alla[index]).parent().addClass('active');
+        }
+    }
 }

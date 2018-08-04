@@ -5,7 +5,7 @@ module.exports = function () {
     //进到个人中心的前提是登录
     router.use((req ,res, next)=>{
         if(!req.session.uid){
-            res.redirect('/login');
+            res.redirect('/login?href=' + req.originalUrl);
             return ;
         }
         next();
@@ -101,6 +101,12 @@ module.exports = function () {
             results.end = end;
             //链接地址里面查询信息
             results.urlext = urlext;
+            results.title = '题库';
+
+            //个人信息
+            results.username=req.session.username;
+            results.header=req.session.header;
+
             res.render('qlist', results);
         });
     });
@@ -219,20 +225,12 @@ module.exports = function () {
                 qinfo:{产品详情}
 
             }*/
+            results.title = '做题-题库';
+            //个人信息
+            results.username=req.session.username;
+            results.header=req.session.header;
             res.render('qinfo', results);
-
         });
-        
-       
     });
-
-    // router.get('/', (req ,res)=>{
-    //     res.render('qlist', {
-    //         username:req.session.username,
-    //         header:req.session.header
-    //     });
-    // });
-
-
     return router;
 }
