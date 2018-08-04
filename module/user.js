@@ -6,10 +6,11 @@ module.exports = function () {
     
     //进到个人中心的前提是登录
     router.use((req ,res, next)=>{
+        /*
         req.session.uid = 2;
         req.session.header = 'http://lulaoshi:81/uploads\2018\08\1533289491644_044937.jpg';
         req.session.username = '屈向';
-
+        */
         if(!req.session.uid){
             res.redirect('/login');
             return ;
@@ -61,7 +62,6 @@ module.exports = function () {
                 LEFT JOIN ${qtable} AS q ON co.qid = q.qid 
                 LEFT JOIN qclass AS c ON q.qcid = c.qcid 
                 WHERE co.status = 0`;
-               
                 //查询当前页应该显示的记录
                 sql += ` LIMIT ${pagenum*(page-1)},${pagenum}`;
                 mydb.query(sql, (err, result)=>{
