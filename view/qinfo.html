@@ -1,0 +1,73 @@
+<% include top.html%>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2 col-xs-2 leftmenu">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="/question/">全部</a></li>
+                    <% 
+                    let qcA = [];
+                    for(let qc of qclist){
+                        qcA[qc.qcid] = qc.qcname;
+                    %>
+                        <li<%-qc.qcid == qinfo.qcid ? ' class="active"':''%>><a href="/question?qcid=<%=qc.qcid%>"><%=qc.qcname%></a></li>
+                    <%}
+                    <!-- [u,u,u,u,VUE456]  稀疏数组 -->
+                    %>
+                </ul>
+            </div>
+            <div class="col-sm-10 col-xs-10 main">
+                <% if(prevqid){%>
+                    <a class="btn btn-default" href="/question/qinfo?qid=<%=prevqid%>" role="button">上一题</a>
+                <% }%>
+
+                <% if(nextqid){%>
+                    <a class="btn btn-default" href="/question/qinfo?qid=<%=nextqid%>" role="button">下一题</a>
+                <% }%>
+                <hr>
+                <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+                    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">问题</a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">答案</a>
+                        </li>
+                        <li role="presentation" class="">
+                            <a href="#ansyle" role="tab" id="ansyle-tab" data-toggle="tab" aria-controls="ansyle" aria-expanded="false">试题解析</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                            <p><%-qinfo.qtitle%></p>
+                            <hr>
+                            <ul class="ext">
+                                <li><b><%=qcA[qinfo.qcid]%></b>面试题</li>
+                                <li>难度：<div class="star" style="width: <%=qinfo.diff*16%>px"></div></li>
+                                <li>重要度：<div class="star" style="width: <%=qinfo.import*16%>px"></div></li>
+                                <li>收藏次数：<%=qinfo.collect%></li>
+                                <li>答题次数：<%=qinfo.views%></li>
+                                <li>来源：<%=qinfo.comefrom%></li>
+                                <li>创建时间：<%-qinfo.addtimes.toLocaleString()%></li>
+                            </ul>
+                            <hr>
+                            <form action="" id="answerform">
+                                <h3>答题：</h3>
+                                <input type="hidden" name="qid" id="qid" value="<%=qinfo.qid%>">
+                                <textarea class="form-control" name="answer" id="answer" cols="30" rows="5"></textarea>
+                                <hr>
+                                <button type="button" class="btn  btn-default saveanswer">提交答案</button>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                            <p><%-qinfo.answer%></p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="ansyle" aria-labelledby="ansyle-tab">
+                            <p><%-qinfo.ansyle%></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include bottom.html%>

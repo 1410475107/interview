@@ -2,15 +2,7 @@
     <div class="container">
         <h1><img src="<%=header%>" class="topheader" alt="">欢迎<%=username%>来到面试题平台 </h1>
         <div class="row">
-                <div class="col-sm-2 col-xs-2 leftmenu">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"> <a href="/user/">个人头像</a></li>
-                        <li><a href="##">个人收藏</a></li>
-                        <li><a href="##">做过的题</a></li>
-                        <li><a href="##">修改密码</a></li>
-                        <li><a href="##">退出登录</a></li>
-                    </ul>
-                </div>
+                <% include userleft.html%>
                 <div class="col-sm-10 col-xs-10 main">
                     <h3>修改个人头像</h3>
                     <form class="form-horizontal" id="headerform">

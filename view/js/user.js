@@ -6,6 +6,8 @@ window.onload = function () {
     uploadheader();
     //收藏事件
     collect();
+    //答题
+    answer();
 }
 function reg() {
     $('.regbtn').click(function(){
@@ -118,6 +120,27 @@ function collect() {
                 // <a href="###" class="collect" qid="<%=q.qid%>">收藏
                 //     <span class="badge"><%=q.collect%></span>
                 // </a>
+            }
+        });
+    });
+}
+
+
+
+//回答问题
+function answer() {
+    $('.saveanswer').click(function(){
+        if(!confirm('是否确定提交答案？')){
+            return ;
+        }
+        //得到答案和对应的试题id
+        $.ajax({
+            url:'/question/answer',
+            type:'POST',
+            data:$('#answerform').serialize(),
+            dataType:'JSON',
+            success:function(result){
+                console.log(result);
             }
         });
     });

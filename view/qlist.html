@@ -12,7 +12,6 @@
                 </ul>
             </div>
             <div class="col-sm-10 col-xs-10 main">
-
                     <% 
                     let n = 0;
                     for(let q of questionlist){
@@ -31,7 +30,7 @@
                                         <span class="badge"><%=q.collect%></span>
                                     </a>
                                     |
-                                    <a href="#">做题次数
+                                    <a href="/question/qinfo?qid=<%=q.qid%>">做题次数
                                         <span class="badge"><%=q.views%></span>
                                     </a>
                                 </div>

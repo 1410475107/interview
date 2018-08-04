@@ -144,6 +144,87 @@ module.exports = function () {
         });
 
     });
+    //答题处理
+    router.post('/answer', (req, res)=>{
+        let qid = req.body.qid;
+        let answer = req.body.answer;
+        async.series({
+            views:function (cb) {
+                let sql = `UPDATE ${qtable} SET views = views + 1 WHERE qid = ?`;
+                mydb.query(sql, qid, (err ,result)=>{
+                    cb(null);
+                });
+            },
+            answer:function (cb) {
+                let sql = `INSERT INTO records(uid, qid, answer, addtimes) VALUES(?,?,?,?)`;
+                mydb.query(sql, [req.session.uid, qid, answer, new Date().toLocaleString()], (err ,result)=>{
+                    cb(null, result);
+                });
+            }
+        }, (err, result)=>{
+            res.json({r:'ok'});
+        });
+    });
+
+    router.get('/qinfo', (req ,res)=>{
+        let qid = req.query.qid ?  req.query.qid : 0;
+        qid = parseInt(qid);
+        if(!qid){
+            res.send('请确定你访问的试题！');
+            return ;
+        }
+        async.series({
+            qclist:function(cb){
+                //获取分类信息
+                let sql = 'SELECT qcid, qcname FROM qclass WHERE status = 0';
+                mydb.query(sql, (err, result)=>{
+                    cb(null, result);
+                });
+            },
+            qinfo:function(cb){
+                //获取分类信息
+                let sql = `SELECT * FROM ${qtable} WHERE status = 0 AND qid = ? LIMIT 1`;
+                mydb.query(sql, qid, (err, result)=>{
+                    cb(null, result[0]);
+                });
+            },
+            prevqid:function(cb){
+                //获取分类信息
+                let sql = `SELECT qid FROM ${qtable} WHERE status = 0 AND qid < ? ORDER BY qid DESC LIMIT 1`;
+                mydb.query(sql, qid, (err, result)=>{
+                    if(result.length){
+                        cb(null, result[0].qid);
+                    }else{
+                        cb(null, 0);
+                    }
+                    
+                });
+            },
+            nextqid:function(cb){
+                //获取分类信息
+                let sql = `SELECT qid FROM ${qtable} WHERE status = 0 AND qid > ? ORDER BY qid ASC LIMIT 1`;
+                mydb.query(sql, qid, (err, result)=>{
+                    if(result.length){
+                        cb(null, result[0].qid);
+                    }else{
+                        cb(null, 0);
+                    }
+                });
+            }
+        }, (err, results)=>{
+            console.log(results);
+            /*
+            {
+                qclist:[分类信息],
+                qinfo:{产品详情}
+
+            }*/
+            res.render('qinfo', results);
+
+        });
+        
+       
+    });
 
     // router.get('/', (req ,res)=>{
     //     res.render('qlist', {
