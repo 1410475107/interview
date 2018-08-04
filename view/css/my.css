@@ -53,12 +53,13 @@ a {
 
 .header li.logo {
     position: absolute;
-    top: 16px;
+    top: 5px;
     width: 173px;
     height: 64px;
     background-image: url(/image/logo-2.png);
     background-repeat: no-repeat;
     overflow: hidden;
+    background-size: contain;
 }
 
 .header .sec {
@@ -151,6 +152,8 @@ a {
     display: inline-block;
     padding: 0 8px;
     border-right: 1px solid #aaa;
+    color: #219A96;
+    font-size: 14px;
 }
 
 .beian {

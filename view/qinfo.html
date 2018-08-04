@@ -59,7 +59,7 @@
                             </form>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                            <p><%-qinfo.answer%></p>
+                            <p><%-qinfo.answer.replace(/\r\n/ig, '<br>')%></p>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="ansyle" aria-labelledby="ansyle-tab">
                             <p><%-qinfo.ansyle%></p>
