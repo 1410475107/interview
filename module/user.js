@@ -57,8 +57,8 @@ module.exports = function () {
             questionlist:function (cb) {
                 //查询所有的试题并显示到页面
                 let sql = `SELECT co.*, q.qid, q.qtitle, q.diff, q.import, q.collect, q.views, q.addtimes, c.qcname 
-                FROM collection AS co  
-                LEFT JOIN ${qtable} AS q ON co.qid = q.qid
+                FROM collection AS co 
+                LEFT JOIN ${qtable} AS q ON co.qid = q.qid 
                 LEFT JOIN qclass AS c ON q.qcid = c.qcid 
                 WHERE co.status = 0`;
                
