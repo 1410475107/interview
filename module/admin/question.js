@@ -20,7 +20,7 @@ module.exports = function () {
         //当前页面
         let page = req.query.page ? req.query.page : 1;
         //每页显示多少条
-        let pagenum = 1;
+        let pagenum = 10;
         //总页数
         let totalpage= 1;
         //链接地址扩展信息
