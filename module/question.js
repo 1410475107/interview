@@ -2,14 +2,7 @@ const async = require('async');
 module.exports = function () {
     const router = express.Router();
     let qtable = 'questions';
-    //进到个人中心的前提是登录
-    router.use((req ,res, next)=>{
-        if(!req.session.uid){
-            res.redirect('/login?href=' + req.originalUrl);
-            return ;
-        }
-        next();
-    });
+    
     //试题列表页面
     router.get('/', (req ,res)=>{
         let qcid = req.query.qcid ? req.query.qcid : 0;
@@ -111,6 +104,15 @@ module.exports = function () {
         });
     });
 
+    //进到题库的前提是登录
+    router.use((req ,res, next)=>{
+        if(!req.session.uid){
+            res.redirect('/login?href=' + req.originalUrl);
+            return ;
+        }
+        next();
+    });
+    
     router.post('/collect', (req, res)=>{
         let qid = req.body.qid;
         async.waterfall([
