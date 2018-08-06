@@ -146,6 +146,7 @@ a{
 .header li.user{
     width: 200px;
     text-align: left;
+    color: #fff;
 }
 .header li.user a{
     color: #28BEB8;

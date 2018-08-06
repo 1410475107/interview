@@ -22,6 +22,8 @@ module.exports = function () {
         let header = req.body.header;
         let sql = 'UPDATE user SET header = ? WHERE uid = ? LIMIT 1';
         mydb.query(sql, [header, req.session.uid], (err, result)=>{
+            //修改session
+            req.session.header = header;
             res.json({r:'ok'});
         });
     });
