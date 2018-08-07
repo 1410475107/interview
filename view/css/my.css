@@ -75,12 +75,12 @@ a {
 }
 
 .header .reg,
-.header .login{
+.header .login {
     font-size: 14px;
     color: #fff;
 }
 
-.header .login{
+.header .login {
     color: #28BEB8;
 }
 
@@ -148,8 +148,7 @@ a {
     font-size: 24px;
 }
 
-
-.ext li{
+.ext li {
     display: inline-block;
     padding: 0 8px;
     border-right: 1px solid #aaa;
@@ -165,50 +164,53 @@ a {
     border-top: 1px solid #ccc;
     padding-top: 20px;
 }
-.header li.user{
+
+.header li.user {
     width: 200px;
     text-align: left;
 }
-.header li.user a{
+
+.header li.user a {
     color: #28BEB8;
     font-size: 16px;
 }
-.header li.user a:hover{
+
+.header li.user a:hover {
     border-bottom: 0;
-    
 }
 
-.header li.user img{
+.header li.user img {
     width: 45px;
     height: 45px;
     border-radius: 50%;
 }
 
-
-.myfluid{
+.myfluid {
     padding: 0;
 }
-.regtop{
+
+.regtop {
     width: 100%;
     height: 220px;
     background-image: url(/image/bg-reg.png);
     background-size: contain;
     padding-top: 60px;
 }
-.myregform{
+
+.myregform {
     background-color: rgb(14, 14, 14);
     background-image: url(/image/banner-img02.png);
     background-repeat: no-repeat;
     background-position: -180px center;
 }
 
-.regtop h1{
+.regtop h1 {
     font-size: 40px;
     color: #fff;
     text-align: center;
 }
 
-#regform{
+#regform {
     max-width: 400px;
     margin: 20px auto;
     margin-right: 15px;
@@ -216,35 +218,42 @@ a {
     padding: 20px;
     height: 100%;
 }
-#regform .input-group, #loginform .input-group{
+
+#regform .input-group,
+#loginform .input-group {
     margin-top: 20px;
 }
-#regform .glyphicon, #loginform .glyphicon{
+
+#regform .glyphicon,
+#loginform .glyphicon {
     color: #aCaCaC;
 }
 
-.mylogin{
+.mylogin {
     width: 100%;
     height: 480px;
     background-image: url(/image/g-rb.jpg);
     background-position: -480px center;
 }
 
-#loginform{
+#loginform {
     max-width: 400px;
     margin: 20px auto;
     margin-right: 0;
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(255, 255, 255, 1);
     padding: 20px;
     height: 450px;
 }
 
-#loginform h1{
+#loginform h1 {
     font-size: 40px;
     color: #333;
 }
 
-.regbtn, .loginsub, .loginsub:hover, .regbtn:hover{
+.regbtn,
+.loginsub,
+.loginsub:hover,
+.regbtn:hover {
     width: 100%;
     height: 48px;
     background-color: #1A8CFE;
@@ -253,20 +262,20 @@ a {
     font-size: 16px;
     border: 0;
 }
-.loginsub{
+
+.loginsub {
     margin-top: 20px;
 }
 
-#loginform .mycoder{
+#loginform .mycoder {
     width: 145px;
 }
-.codeimg{
+
+.codeimg {
     height: 46px;
     display: inline;
 }
 
-
-
-.nav-pills>li>a{
+.nav-pills>li>a {
     border-radius: 0;
 }
