@@ -162,6 +162,8 @@ a {
     color: #aaa;
     text-align: center;
     margin: 1em 0 1em;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
 }
 .header li.user{
     width: 200px;
@@ -193,7 +195,12 @@ a {
     background-size: contain;
     padding-top: 60px;
 }
-
+.myregform{
+    background-color: rgb(14, 14, 14);
+    background-image: url(/image/banner-img02.png);
+    background-repeat: no-repeat;
+    background-position: -180px center;
+}
 
 .regtop h1{
     font-size: 40px;
@@ -202,8 +209,12 @@ a {
 }
 
 #regform{
-    max-width: 500px;
+    max-width: 400px;
     margin: 20px auto;
+    margin-right: 15px;
+    background-color: #fff;
+    padding: 20px;
+    height: 100%;
 }
 #regform .input-group, #loginform .input-group{
     margin-top: 20px;
@@ -216,7 +227,7 @@ a {
     width: 100%;
     height: 480px;
     background-image: url(/image/g-rb.jpg);
-    background-position: 70% center;
+    background-position: -480px center;
 }
 
 #loginform{
@@ -253,3 +264,4 @@ a {
     height: 46px;
     display: inline;
 }
+
