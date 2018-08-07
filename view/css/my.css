@@ -74,17 +74,17 @@ a {
     border: 1px solid #28BEB8;
 }
 
-.header .reg a,
-.header .login a {
+.header .reg,
+.header .login{
     font-size: 14px;
     color: #fff;
 }
 
-.header .login a {
+.header .login{
     color: #28BEB8;
 }
 
-.header .reg a:hover {
+.header .reg:hover {
     border-bottom: 0;
     color: #fff;
 }
@@ -100,7 +100,7 @@ a {
     font-size: 14px;
 }
 
-.header .login a:hover {
+.header .login:hover {
     border-bottom: 0;
     color: #fff;
 }
@@ -231,7 +231,7 @@ a {
 }
 
 #loginform{
-    max-width: 420px;
+    max-width: 400px;
     margin: 20px auto;
     margin-right: 0;
     background-color: rgba(255,255,255,1);
@@ -265,3 +265,8 @@ a {
     display: inline;
 }
 
+
+
+.nav-pills>li>a{
+    border-radius: 0;
+}

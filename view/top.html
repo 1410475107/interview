@@ -19,26 +19,27 @@
         <li>
             <a href="/question">面试题库</a>
         </li>
+        
+        <li>
+            <a href="##">面试宝典</a>
+        </li>
         <% if(typeof username =='undefined'){%>
-        <li>
-            <a href="/user/">个人中心</a>
-        </li>
+            <li>
+                <a href="/user/">个人中心</a>
+            </li>
         <%}%>
-        <li>
-            <a href="##">关于我们</a>
-        </li>
         <% if(typeof username !='undefined'){%>
             <li class="user">
                 你好，<a href="/user/"><%=username%></a> 
                 <img src="<%=header%>" alt="">
             </li>
             <%}else{%>
-        <li class="reg">
-            <a href="/reg">注册</a>
-        </li>
-        <li class="login">
-            <a href="/login">登录</a>
-        </li>
+                <a href="/reg"><li class="reg">
+            注册
+        </li></a>
+        <a href="/login"><li class="login">
+            登录
+        </li></a>
         <%}%>
     </ul>
     <div class="topline"></div>

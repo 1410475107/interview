@@ -26,13 +26,13 @@
             <li class="user">
                 你好，<a href="/user/"><%=username%></a> 
             </li>
-            <%}else{%>
+            <%}else{%><a href="/reg">
             <li class="reg">
-                <a href="/reg">注册</a>
-            </li>
-            <li class="login">
-                <a href="/login">登录</a>
-            </li>
+                注册
+            </li></a>
+            <a href="/login"><li class="login">
+                登录
+            </li></a>
             <%}%>
             
         </ul>

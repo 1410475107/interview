@@ -77,10 +77,11 @@ a{
     border: 1px solid #28BEB8;
 }
 
-.header .reg a, .header .login a{
+.header .reg, .header .login{
     font-size: 14px;
+    color: #fff;
 }
-.header .reg a:hover{
+.header .reg:hover{
     border-bottom: 0;
     color: #fff;
 }
@@ -97,7 +98,7 @@ a{
     font-size: 14px;
 }
 
-.header .login a:hover{
+.header .login:hover{
     border-bottom: 0;
     color: #fff;
 }
@@ -106,7 +107,7 @@ a{
     background-color: #fff;
     border-color: #fff;
 }
-.header .login:hover a{
+.header .login:hover{
     color: #333;
 }
 
