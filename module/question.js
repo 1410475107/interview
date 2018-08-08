@@ -95,6 +95,7 @@ module.exports = function () {
             //链接地址里面查询信息
             results.urlext = urlext;
             results.title = '题库';
+            results.pagenum = pagenum;
 
             //个人信息
             results.username=req.session.username;
