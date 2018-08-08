@@ -42,8 +42,8 @@
                             <hr>
                             <ul class="ext">
                                 <li><b><%=qcA[qinfo.qcid]%></b>面试题</li>
-                                <li>难度：<div class="star" style="width: <%=qinfo.diff*16%>px"></div></li>
-                                <li>重要度：<div class="star" style="width: <%=qinfo.import*16%>px"></div></li>
+                                <li>难度：<div class="star star_<%=qinfo.diff%>"></div></li>
+                                <li>重要度：<div class="star star_<%=qinfo.import%>"></div></li>
                                 <li>收藏次数：<%=qinfo.collect%></li>
                                 <li>答题次数：<%=qinfo.views%></li>
                                 <li>来源：<%=qinfo.comefrom%></li>

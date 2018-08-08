@@ -3,45 +3,45 @@
         <div class="row">
             <div class="col-sm-2 col-xs-2 leftmenu">
                 <ul class="nav nav-pills nav-stacked">
-                    <li<%-qcid ? '':' class="active"'%>>
+                    <li<%-qcid ? '': ' class="active"'%>>
                         <a href="/question/">全部</a>
                     </li>
                     <% for(let qc of qclist){%>
-                        <li<%-qc.qcid == qcid ? '  class="active"':''%>><a href="/question?qcid=<%=qc.qcid%>"><%=qc.qcname%></a></li>
+                        <li<%-qc.qcid==qcid ? '  class="active"': ''%>>
+                            <a href="/question?qcid=<%=qc.qcid%>">
+                                <%=qc.qcname%>
+                            </a>
+                        </li>
                     <%}%>
                 </ul>
             </div>
             <div class="col-sm-10 col-xs-10 main">
-                    <% 
+                <% 
                     let n = 0;
                     for(let q of questionlist){
                         n++;
-                        %>
-
-                        <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <span class="order"><%=pagenum*(page-1)+n%></span>，
-                                        <%=q.qcname%> 测试题 |
-                                         难度
-                                    <div class="star" style="width:<%=q.diff*16%>px"></div> |
-                                    重要度
-                                    <div class="star" style="width:<%=q.import*16%>px"></div>
-                                    |
-                                    <a href="###" class="collect" qid="<%=q.qid%>">收藏
-                                        <span class="badge"><%=q.collect%></span>
-                                    </a>
-                                    |
-                                    <a href="/question/qinfo?qid=<%=q.qid%>">做题次数
-                                        <span class="badge"><%=q.views%></span>
-                                    </a>
-                                </div>
-                                <div class="panel-body">
-                                        <%-q.qtitle%>
-                                </div>
-                            </div>
-
-                        
-                        <%}%>
+                %>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="order">
+                            <%=pagenum*(page-1)+n%>
+                        </span>，
+                        <%=q.qcname%> 测试题 | 难度
+                            <div class="star star_<%=q.diff%>"></div> | 重要度
+                            <div class="star star_<%=q.import%>"></div> |
+                            <a href="###" class="collect" qid="<%=q.qid%>">收藏
+                                <span class="badge"><%=q.collect%></span>
+                            </a>
+                            |
+                            <a href="/question/qinfo?qid=<%=q.qid%>">做题次数
+                                <span class="badge"><%=q.views%></span>
+                            </a>
+                    </div>
+                    <div class="panel-body">
+                        <%-q.qtitle%>
+                    </div>
+                </div>
+                <%}%>
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li>
@@ -50,21 +50,20 @@
                             </a>
                         </li>
                         <%for(let p = start; p <= end; p++){%>
-                            <li<%-p==page ? ' class="active"': ''%>>
-                                <a href="/question?page=<%=p%><%=urlext%>">
-                                    <%=p%>
-                                </a>
-                                </li>
-                                <%}%>
-                                    <li>
-                                        <a href="/question?page=<%=page*1+1 >totalpage ? totalpage:(page*1+1)%><%=urlext%>" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
+                        <li<%-p==page ? ' class="active"': ''%>>
+                            <a href="/question?page=<%=p%><%=urlext%>">
+                                <%=p%>
+                            </a>
+                        </li>
+                        <%}%>
+                        <li>
+                            <a href="/question?page=<%=page*1+1 >totalpage ? totalpage:(page*1+1)%><%=urlext%>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
-    
-<% include bottom.html%>
+    <% include bottom.html%>
