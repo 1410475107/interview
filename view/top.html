@@ -27,17 +27,13 @@
             </li>
         <%}%>
         <% if(typeof username !='undefined'){%>
-            <li class="user">
-                你好，<a href="/user/"><%=username%></a> ，<a href="/logout/">退出</a> 
-                <img src="<%=header%>" alt="">
-            </li>
-            <%}else{%>
-                <a href="/reg"><li class="reg">
-            注册
-        </li></a>
-        <a href="/login"><li class="login">
-            登录
-        </li></a>
+        <li class="user">
+            你好，<a href="/user/"><%=username%></a> ，<a href="/logout/">退出</a> 
+            <img src="<%=header%>" alt="">
+        </li>
+        <%}else{%>
+            <a href="/reg"><li class="reg">注册</li></a>
+            <a href="/login"><li class="login">登录</li></a>
         <%}%>
     </ul>
     <div class="topline"></div>
