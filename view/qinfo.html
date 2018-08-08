@@ -1,5 +1,5 @@
 <% include top.html%>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2 leftmenu">
                 <ul class="nav nav-pills nav-stacked">
@@ -59,7 +59,7 @@
                             </form>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                            <p><%-qinfo.answer.replace(/\r\n/ig, '<br>')%></p>
+                            <p><%-qinfo.answer.replace(/(\r\n|\r|\n)/ig, '<br>')%></p>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="ansyle" aria-labelledby="ansyle-tab">
                             <p><%-qinfo.ansyle%></p>

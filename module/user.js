@@ -44,8 +44,8 @@ module.exports = function () {
         async.series({
             totalnums:function (cb) {
                 //查询满足条件的记录数
-                let sql = `SELECT count(cid) AS totalnums FROM collection WHERE status = 0`;
-                mydb.query(sql, (err, result)=>{
+                let sql = `SELECT count(cid) AS totalnums FROM collection WHERE status = 0 AND uid = ?`;
+                mydb.query(sql, req.session.uid, (err, result)=>{
                     console.log(err);
                     //返回总记录数
                     cb(null, result[0].totalnums);
@@ -57,10 +57,10 @@ module.exports = function () {
                 FROM collection AS co 
                 LEFT JOIN ${qtable} AS q ON co.qid = q.qid 
                 LEFT JOIN qclass AS c ON q.qcid = c.qcid 
-                WHERE co.status = 0`;
+                WHERE co.status = 0 AND uid = ?`;
                 //查询当前页应该显示的记录
                 sql += ` LIMIT ${pagenum*(page-1)},${pagenum}`;
-                mydb.query(sql, (err, result)=>{
+                mydb.query(sql, req.session.uid, (err, result)=>{
                     cb(null, result);
                 });
             }

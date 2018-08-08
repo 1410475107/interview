@@ -1,60 +1,65 @@
 <% include top.html%>
-    <div class="container">
+    <div class="container-fluid">
         <!-- <h1><img src="<%=header%>" class="topheader" alt="">欢迎<%=username%>来到面试题平台 </h1> -->
         <div class="row">
-                <% include userleft.html%>
-                <div class="col-sm-10 col-xs-10 main">
-                        <% 
-                        let n = 0;
-                        for(let q of questionlist){
-                            n++;
-                            %>
-    
-                            <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <span class="order"><%=n%></span>，
-                                            <%=q.qcname%> 测试题 难度
-                                        <div class="star" style="width:<%=q.diff*16%>px"></div>
-                                        重要度
-                                        <div class="star" style="width:<%=q.import*16%>px"></div>
-                                        |
-                                        <a href="###" class="collect" qid="<%=q.qid%>">收藏
-                                            <span class="badge"><%=q.collect%></span>
-                                        </a>
-                                        |
-                                        <a href="/question/qinfo?qid=<%=q.qid%>">做题次数
-                                            <span class="badge"><%=q.views%></span>
-                                        </a>
-                                    </div>
-                                    <div class="panel-body">
-                                            <%-q.qtitle%>
-                                    </div>
-                                </div>
-    
-                            
-                            <%}%>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li>
-                                <a href="/user/collect?page=<%=page-1 < 1 ? 1:(page-1)%><%=urlext%>" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <%for(let p = start; p <= end; p++){%>
-                                <li<%-p==page ? ' class="active"': ''%>>
-                                    <a href="/user/collect?page=<%=p%><%=urlext%>">
-                                        <%=p%>
-                                    </a>
-                                    </li>
-                                    <%}%>
-                                        <li>
-                                            <a href="/user/collect?page=<%=page*1+1 >totalpage ? totalpage:(page*1+1)%><%=urlext%>" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                        </ul>
-                    </nav>
+            <% include userleft.html%>
+            <div class="col-sm-10 col-xs-10 main">
+                <% 
+                let n = 0;
+                for(let q of questionlist){
+                    n++;
+                %>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="order"><%=n%></span>，
+                            <%=q.qcname%> 测试题 难度
+                        <div class="star star_<%=q.diff%>"></div>
+                        重要度
+                        <div class="star star_<%=q.import%>"></div>
+                        |
+                        <a href="###" class="collect" qid="<%=q.qid%>">收藏
+                            <span class="badge"><%=q.collect%></span>
+                        </a>
+                        |
+                        <a href="/question/qinfo?qid=<%=q.qid%>">做题次数
+                            <span class="badge"><%=q.views%></span>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                            <%-q.qtitle%>
+                    </div>
                 </div>
+                <%}%>
+                <%if(totalpage > 1){%>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="/user/collect?page=<%=page-1 < 1 ? 1:(page-1)%><%=urlext%>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <%for(let p = start; p <= end; p++){%>
+                        <li<%-p==page ? ' class="active"': ''%>>
+                            <a href="/user/collect?page=<%=p%><%=urlext%>">
+                                <%=p%>
+                            </a>
+                        </li>
+                        <%}%>
+                        <li>
+                            <a href="/user/collect?page=<%=page*1+1 >totalpage ? totalpage:(page*1+1)%><%=urlext%>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <%}else if(!totalpage){%>
+                <div class="jumbotron">
+                    <h2>你目前还没有收藏试题!</h2>
+                    <p>在你做题的时候，如果遇到自己认为比较重要的试题，可收藏起来方便下次复习；</p>
+                    <p><a class="btn btn-primary btn-lg" href="/question" role="button">去做题</a></p>
+                </div>
+                <%}%>    
+            </div>
         </div>
     </div>
     <% include bottom.html%>

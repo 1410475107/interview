@@ -120,6 +120,7 @@ a {
 
 .main {
     border-left: 2px solid rgb(221, 51, 62);
+    min-height: 245px;
     height: 100%;
 }
 
