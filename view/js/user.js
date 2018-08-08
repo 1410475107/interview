@@ -157,7 +157,6 @@ function answer() {
 function leftmenu() {
     let alla = $('.leftmenu li a');
     let url = window.location.pathname;
-    console.log(alla);
     for (let index = 0; index < alla.length; index++) {
         console.log(alla[index].getAttribute('href'));
         if($(alla[index]).attr('href') == url){
